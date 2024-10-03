@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get code from the repository
+      uses: actions/checkout@v2 
+
+    - name: Set up Python
+      uses: actions/setup-python@v2 
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry install
+
+    - name: Run tests
+      run: poetry run python -m pytest
+
+    - name: Build Docker image
+      run: docker build -t my-python-app .
+
+    - name: Run Docker container
+      run: |
+        docker run my-python-app poetry run hello
+        docker run my-python-app poetry run bye
+
+        
