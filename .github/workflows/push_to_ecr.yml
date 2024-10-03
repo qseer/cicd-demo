@@ -10,7 +10,7 @@ jobs:
 
     env:  # Defining environment variables
       AWS_REGION: us-east-1
-      AWS_ACCOUNT_ID: 111677503276
+      AWS_ACCOUNT_ID: 132677503276
       ECR_REPOSITORY: stock_platform_unified_api             
       IMAGE_TAG: latest                         
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
